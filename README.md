@@ -1,12 +1,16 @@
-Recursive JSON (RJSON) is data format and compressor.
+# RJSON: compress JSON to JSON
 
-It converts any JSON data collection  into more compact recursive form. Compressed data is still JSON and can be parsed with `JSON.parse`. RJSON can compress not only homogeneous collections, but any data sets with free structure.
+RJSON (Recursive JSON) converts any JSON data collection  into more compact recursive form. Compressed data is still JSON and can be parsed with `JSON.parse`. RJSON can compress not only homogeneous collections, but any data sets with free structure.
 
-RJSON is stream single-pass compressor,  it extracts data schemes from document, assign each schema unique number and  use this number  instead of repeating same property names again and again.
+RJSON is single-pass stream compressor,  it extracts data schemes from document, assign each schema unique number and  use this number  instead of repeating same property names again and again.
+
+More information about RJSON data format you can find at my blog post [Recursive JSON (RJSON) introduction](http://www.cliws.com/e/06pogA9VwXylo_GknPEeFA/) published on IMO [best social news RSS-reader](http://www.cliws.com/).
+
+There is also available [RJSON demo](http://www.cliws.com/p/rjson/) where you can convert any JSON data into RJSON format, decode result and ensure that it matches original JSON data.
 
 Bellow you can see same document in both forms.
 
-JSON:
+**JSON**
 
     {
     "id": 7,
@@ -22,7 +26,7 @@ JSON:
     ]
     }
 
-RJSON:
+**RJSON**
 
     {
     "id": 7,
