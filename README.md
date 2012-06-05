@@ -2,7 +2,7 @@
 
 RJSON (Recursive JSON) converts any JSON data collection  into more compact recursive form. Compressed data is still JSON and can be parsed with `JSON.parse`. RJSON can compress not only homogeneous collections, but any data sets with free structure.
 
-RJSON is single-pass stream compressor,  it extracts data schemes from document, assign each schema unique number and  use this number  instead of repeating same property names again and again.
+RJSON is single-pass stream compressor,  it extracts data schemes from document, assign each schema unique number and  use this number  instead of repeating same property names again and again. Each data schema is unique set of keys ordered with natural sort (alphabetically). After packing and unpacking order of keys may be changed but restored document will be fully identical to the original document.
 
 More information about RJSON data format you can find at my blog post [Recursive JSON (RJSON) introduction](http://www.cliws.com/e/06pogA9VwXylo_GknPEeFA/) published on IMO [best social news RSS-reader](http://www.cliws.com/).
 

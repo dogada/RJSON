@@ -127,7 +127,7 @@ var RJSON = (function() {
                     }
                 }
             } else {
-                schemaKeys = getKeys(value);
+                schemaKeys = getKeys(value).sort();
                 if (schemaKeys.length === 0) {
                     return {};
                 }
@@ -204,7 +204,7 @@ var RJSON = (function() {
                 }
 
             } else { // new schema
-                schemaKeys = getKeys(value);
+                schemaKeys = getKeys(value).sort();
                 if (schemaKeys.length === 0) {
                     return {};
                 }

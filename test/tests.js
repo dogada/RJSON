@@ -88,7 +88,12 @@ var doc2 = {
     'box': [[-14.833, -199.035, -30.143], [14.833, 199.035, 0.184]]
 };
 
-$.each([doc1, doc2], function(i, doc) {
+var doc3 = {
+    id: 2,
+    data: [{a: 6, b: 7}, {b: 8, a: 9}]
+};
+
+$.each([doc1, doc2, doc3], function(i, doc) {
     test('Packing and unpacking of doc' + (i + 1), function() {
         testPackAndUnpack(doc);
     });
@@ -98,8 +103,7 @@ function testPackAndUnpack(data) {
     var dataStr = JSON.stringify(data),
     packed = RJSON.pack(data),
     packedStr = JSON.stringify(packed),
-    unpacked = RJSON.unpack(JSON.parse(packedStr)),
-    unpackedStr = JSON.stringify(unpacked);
-    equal(dataStr, unpackedStr, 'Original and unpacked data are identical.');
+    unpacked = RJSON.unpack(JSON.parse(packedStr));
+    deepEqual(data, unpacked, 'Original and unpacked data are identical.');
 }
 
