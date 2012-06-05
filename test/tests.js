@@ -96,6 +96,7 @@ var doc3 = {
 $.each([doc1, doc2, doc3], function(i, doc) {
     test('Packing and unpacking of doc' + (i + 1), function() {
         testPackAndUnpack(doc);
+        testDoublePackAndUnpack(doc);
     });
 });
 
@@ -105,5 +106,13 @@ function testPackAndUnpack(data) {
     packedStr = JSON.stringify(packed),
     unpacked = RJSON.unpack(JSON.parse(packedStr));
     deepEqual(data, unpacked, 'Original and unpacked data are identical.');
+}
+
+function testDoublePackAndUnpack(data) {
+    var dataStr = JSON.stringify(data),
+    packed = RJSON.pack(RJSON.pack(data)),
+    packedStr = JSON.stringify(packed),
+    unpacked = RJSON.unpack(RJSON.unpack(JSON.parse(packedStr)));
+    deepEqual(data, unpacked, 'Double packed and unpacked data are ok.');
 }
 
