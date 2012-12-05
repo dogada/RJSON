@@ -44,6 +44,8 @@ Bellow you can see same document in both forms.
 
 RJSON allows to:
 
+* decrease JSON data redundancy before the compression with tradition tools like gzip (for example see great tool [jsonpickle](http://jsonpickle.github.com/) or [Twitter API output](https://dev.twitter.com/docs/api/1.1/get/users/lookup) when length of field name often greater than leghth of the value itself).
+
 * reduce JSON data size and network traffic when gzip isn't available. For example, in-browser 3D-modeling tools like [Mydeco 3D-planner](http://mydeco.com/3d-planner/) may process and send to server  megabytes of JSON-data;
 
 * analyze large collections of JSON-data without unpacking of whole dataset. RJSON-data is still JSON-data, so it can be traversed and analyzed after parsing and fully unpacked only if a document meets  some conditions.
