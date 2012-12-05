@@ -52,6 +52,18 @@ RJSON allows to:
 
 The above JSON vs RJSON example is based on the data structure from the [JSON DB: a compressed JSON format](http://michaux.ca/articles/json-db-a-compressed-json-format). It's concept is implemented in [JSONH - JSON Homogeneous Collections Compressor](https://github.com/WebReflection/JSONH). RJSON provides similar level of data compression like JSONH does, but RJSON isn't limited to homogeneous collections only.
 
-To run unit tests just open `test/index.html` in your browser.
+To run unit tests just open `test/index.html` in your browser or `npm test` if you have NodeJs installed.
+
+For testing RJSON compression you can use `bin/rjson` script. It reads JSON/RJSON input from stdin and outputs RJSON/JSON to stdout. To unpack RJSON data try `rjson -u`. If you want to see some stat about comprerssion ratio and time, use `rjson -v`. With `rjson -t` you can active test mode in which script will compare restored and original data. For example:
+
+    $ cat ./test/fixtures/twitter_search100.json | rjson -v > ./100.rjson
+    In: 100523, Out: 64664, In/Out=155%, Time: 22ms (RJSON: 10ms).
+
+    $ cat ./100.rjson | rjson -uv > ./100.json
+    In: 64664, Out: 100523, In/Out=64%, Time: 21ms (RJSON: 4ms).
+
+    $ curl "http://search.twitter.com/search.json?q=Javascript&rpp=100&lang=en&include_entities=true" | rjson -vt > /dev/null
+    In: 103943, Out: 65763, In/Out=158%, Time: 32ms (RJSON: 18ms).
+
 
 The code is available under Simplified BSD License, fell free to compress the world.
