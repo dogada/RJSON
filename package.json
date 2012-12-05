@@ -1,6 +1,6 @@
 {
-  "name": "RJSON",
-  "version": "0.2.0",
+  "name": "rjson",
+  "version": "0.2.2",
   "description": "RJSON (Recursive JSON) converts any JSON data collection into more compact recursive form.",
   "main": "rjson.js",
   "bin": {

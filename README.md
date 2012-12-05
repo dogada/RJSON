@@ -52,7 +52,7 @@ RJSON allows to:
 
 The above JSON vs RJSON example is based on the data structure from the [JSON DB: a compressed JSON format](http://michaux.ca/articles/json-db-a-compressed-json-format). It's concept is implemented in [JSONH - JSON Homogeneous Collections Compressor](https://github.com/WebReflection/JSONH). RJSON provides similar level of data compression like JSONH does, but RJSON isn't limited to homogeneous collections only.
 
-To run unit tests just open `test/index.html` in your browser or `npm test` if you have NodeJs installed.
+The library file `rjson.js` have no external dependencies but if you use NodeJS you can install it with `npm install rjson`. To run unit tests just open `test/index.html` in your browser or execute `npm test` in the console.
 
 For testing RJSON compression you can use `bin/rjson` script. It reads JSON/RJSON input from stdin and outputs RJSON/JSON to stdout. To unpack RJSON data try `rjson -u`. If you want to see some stat about comprerssion ratio and time, use `rjson -v`. With `rjson -t` you can active test mode in which script will compare restored and original data. For example:
 
