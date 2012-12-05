@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+
+var program = require('commander'), assert = require('assert'), RJSON = require('../rjson.js');
+
+var data = [];
+
+program
+    .option('-u, --unpack', 'Unpack RJSON data (default is pack).')
+    .option('-t, --test', 'Check that restored data is equal to original data.')
+    .option('-e, --encoding', 'Encoding [utf8]', 'utf8')
+    .option('-v, --verbose', 'Output debug info to stderr.')
+    .option('-d, --dry_run', 'Don\'t output packed/unpacked data.')
+    .on('--help', function() {
+        console.log('  Read JSON/RJSON from stdin and output RJSON/JSON to stdout.');
+    })
+    .parse(process.argv);
+
+process.stdin.resume();
+
+process.stdin.on('data', function(chunk) {
+    data.push(chunk);
+});
+
+process.stdin.on('end', function () {
+    if (!data.length) return;
+    var start = +new Date(),
+    input = new Buffer.concat(data).toString(program.encoding),
+    parsed = JSON.parse(input),
+    rjsonTime = +new Date(),
+    res = RJSON[program.unpack ? 'unpack' : 'pack'](parsed),
+    rjsonTime = +new Date() - rjsonTime,
+    output = JSON.stringify(res);
+    if (!program.dry_run) process.stdout.write(output);
+    if (program.verbose) {
+        console.error('In: %d, Out: %d, In/Out=%d%, Time: %dms (RJSON: %dms).',
+                      input.length, output.length,
+                      Math.round(100 * input.length / (output.length || 1)),
+                      (+new Date() - start), rjsonTime);
+    }
+    if (program.test) {
+        assert.deepEqual(parsed,
+                         RJSON[program.unpack ? 'pack' : 'unpack'](
+                             JSON.parse(output)));
+    }
+});
+

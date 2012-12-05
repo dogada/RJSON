@@ -1,6 +1,10 @@
 /* RJSON unit tests.
 */
 
+if (typeof require !== 'undefined') {
+    RJSON = require('../rjson.js');
+}
+
 function testPacked(data, expectedStr) {
     equal(JSON.stringify(RJSON.pack(data)), expectedStr);
 }
@@ -93,12 +97,15 @@ var doc3 = {
     data: [{a: 6, b: 7}, {b: 8, a: 9}]
 };
 
-$.each([doc1, doc2, doc3], function(i, doc) {
-    test('Packing and unpacking of doc' + (i + 1), function() {
-        testPackAndUnpack(doc);
-        testDoublePackAndUnpack(doc);
-    });
-});
+var docs = [doc1, doc2, doc3];
+for (var i = 0, doc; doc = docs[i++];) {
+    (function(d) {
+        test('Packing and unpacking of doc' + i, function() {
+            testPackAndUnpack(d);
+            testDoublePackAndUnpack(d);
+        });
+    })(doc);
+};
 
 function testPackAndUnpack(data) {
     var dataStr = JSON.stringify(data),

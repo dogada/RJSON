@@ -1,0 +1,37 @@
+{
+  "name": "RJSON",
+  "version": "0.2.0",
+  "description": "RJSON (Recursive JSON) converts any JSON data collection into more compact recursive form.",
+  "main": "rjson.js",
+  "bin": {
+    "rjson": "./bin/rjson"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "commander": "~1.1.1"
+  },
+  "devDependencies": {
+    "qunit": "~0.5.12"
+  },
+  "scripts": {
+    "test": "qunit -c ./ -t ./test/tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dogada/RJSON.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dogada/RJSON/issues"
+  },
+  "keywords": [
+    "json",
+    "rjson",
+    "compression",
+    "gzip"
+  ],
+  "author": "Dmytro V. Dogadailo <entropyhacker@gmail.com> (http://www.cliws.com/dogada/)",
+  "license": "BSD",
+  "readmeFilename": "README.md"
+}

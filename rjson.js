@@ -256,6 +256,6 @@ var RJSON = (function() {
 
 
 // export for node.js
-if(typeof module != 'undefined' && module.exports) {
+if (typeof module != 'undefined' && module.exports) {
     module.exports = RJSON;
 }
