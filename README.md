@@ -66,4 +66,4 @@ For testing RJSON compression you can use `bin/rjson` script. It reads JSON/RJSO
     In: 103943, Out: 65763, In/Out=158%, Time: 32ms (RJSON: 18ms).
 
 
-The code is available under Simplified BSD License, fell free to compress the world.
+Fell free to compress the world.
