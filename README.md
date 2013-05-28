@@ -69,3 +69,5 @@ For testing RJSON compression you can use `bin/rjson` script. It reads JSON/RJSO
 Dmitri Russu kindly ported RJSON to PHP, you can obtain it at [RJSON-php](https://github.com/dmitrirussu/RJSON-php).
 
 Fell free to compress the world.
+
+[Follow me on Twitter](https://twitter.com/d0gada).
