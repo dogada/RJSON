@@ -42,6 +42,11 @@ test('Hashmaps', function() {
     testPacked({id: 1,
                 items: [{a: 1, b: 2}, {a: 8, b: 9}, {a: 10}, {a: 11}, {a: 12}]},
                '{"id":1,"items":[{"a":1,"b":2},[2,8,9],{"a":10},[3,11,12]]}');
+    // After packing order of keys may be changed but
+    // but restored document will be fully identical to the original document
+    testPacked({'test': [{'b': '1', 'a': '1'}, {'b': '2', 'a': '2'}]},
+              '{"test":[{"a":"1","b":"1"},[2,"2","2"]]}');
+
 });
 
 test('Arrays', function() {
@@ -97,7 +102,10 @@ var doc3 = {
     data: [{a: 6, b: 7}, {b: 8, a: 9}]
 };
 
-var docs = [doc1, doc2, doc3];
+var doc4 = {test: [{b: '1', a: '1'},
+                   {b: '2', a: '2'}]};
+
+var docs = [doc1, doc2, doc3, doc4];
 for (var i = 0, doc; doc = docs[i++];) {
     (function(d) {
         test('Packing and unpacking of doc' + i, function() {
@@ -105,7 +113,7 @@ for (var i = 0, doc; doc = docs[i++];) {
             testDoublePackAndUnpack(d);
         });
     })(doc);
-};
+}
 
 function testPackAndUnpack(data) {
     var dataStr = JSON.stringify(data),
