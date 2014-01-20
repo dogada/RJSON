@@ -125,6 +125,8 @@ var RJSON = (function() {
                 return value;
             } else if (isArray(value)) {
                 return encodeArray(value);
+            } else if (isDate(value)) {
+                return value.toString();
             } else {
                 return encodeObject(value);
             }
@@ -239,6 +241,10 @@ var RJSON = (function() {
 
     function _isArray(obj) {
         return toString.apply(obj) === '[object Array]';
+    }
+
+    function isDate(val) {
+      return (val instanceof Date && isNaN(val.valueOf()) === false);
     }
 
     return {
