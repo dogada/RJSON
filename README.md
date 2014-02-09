@@ -41,6 +41,7 @@ Bellow you can see same document in both forms.
     ]
     }
 
+RJSON supports all types of data that JSON itself supports. When you will try to pack unsupported by JSON data types (for example `Date`) you may get unexpected results (see the [discussion](https://github.com/dogada/RJSON/pull/2/) about this issue, look at [test/tests.js](https://github.com/dogada/RJSON/blob/master/test/tests.js) for the examples). Please ensure before packing that your data contains only primitive values, arrays and plain objects.
 
 RJSON allows to:
 

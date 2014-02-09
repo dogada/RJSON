@@ -5,8 +5,8 @@ if (typeof require !== 'undefined') {
     RJSON = require('../rjson.js');
 }
 
-function testPacked(data, expectedStr) {
-    equal(JSON.stringify(RJSON.pack(data)), expectedStr);
+function testPacked(data, expectedStr, message) {
+    equal(JSON.stringify(RJSON.pack(data)), expectedStr, message);
 }
 
 test('Primitives', function() {
@@ -62,6 +62,17 @@ test('Arrays', function() {
     testPacked([[1.618, 3.14]], '[[0,1.618,3.14]]');
     testPacked([['X', 'Y'], ['A', 'B']], '[["X","Y"],["A","B"]]');
     testPacked([[1, 2], [3, 4]], '[[0,1,2],[0,3,4]]');
+});
+
+// Send to RJSON.pack primitive values and plain objects or you may receive
+// unexpected results.
+test('Complex values', function() {
+    testPacked(new Date(), '{}', 'new Date');
+    testPacked(new Function(), undefined, 'new Function');
+    testPacked(function() {}, undefined, 'function () {}');
+    testPacked(new String(), '{}', 'new String');
+    testPacked(new Number(), '{}', 'new Number');
+    testPacked(new Boolean(), '{}', 'new Boolean');
 });
 
 var doc1 = [
