@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var program = require('commander'), assert = require('assert'), RJSON = require('../rjson.js');
+var program = require('commander'), assert = require('assert'), RJSON = require('../dist');
 
 var data = [];
 
@@ -43,4 +43,3 @@ process.stdin.on('end', function () {
                              JSON.parse(output)));
     }
 });
-
