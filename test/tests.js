@@ -46,6 +46,9 @@ test('Hashmaps', function() {
     // but restored document will be fully identical to the original document
     testPacked({'test': [{'b': '1', 'a': '1'}, {'b': '2', 'a': '2'}]},
               '{"test":[{"a":"1","b":"1"},[2,"2","2"]]}');
+    dt = new Date()
+    testPacked({'ts': dt},
+              '{"ts":"'+ dt.toString() +'"}');
 
 });
 
